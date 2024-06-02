@@ -1,0 +1,15 @@
+class Solution {
+    public boolean check(int[] nums) {
+        int inversion=0;
+        for(int i=0;i<nums.length-1;i++){
+            if(nums[i]>nums[i+1]){
+                inversion++;
+            }
+        } 
+        if(nums[0]<nums[nums.length-1]){
+            inversion++;
+        } 
+        return inversion<=1;
+    }
+       
+}
