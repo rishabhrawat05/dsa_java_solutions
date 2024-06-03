@@ -1,0 +1,33 @@
+//User function template for Java
+
+class Solution
+{
+    public static void sort012(int a[], int n)
+    {
+        // code here 
+        int k=0;
+        int j=n-1;
+        int m=0;
+        while(m<=j){
+            if(a[m]==0){
+                int temp=a[m];
+                a[m]=a[k];
+                a[k]=temp;
+                k++;
+                m++;
+                
+                
+            }
+            else if(a[m]==2){
+                int temp=a[m];
+                a[m]=a[j];
+                a[j]=temp;
+                j--;
+            }
+            else{
+                m++;
+                continue;
+            }
+        }
+    }
+}
