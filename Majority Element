@@ -1,3 +1,5 @@
+/////// BETTER APPROACH //////
+
 class Solution {
     public int majorityElement(int[] nums) {
         HashMap<Integer,Integer> map=new HashMap<>();
@@ -15,5 +17,36 @@ class Solution {
             }
         }
         return -1;
+    }
+}
+
+///// OPTIMAL APPROACH /////
+
+class Solution {
+    public int majorityElement(int[] nums) {
+    int cnt=0;
+    int elm=0;
+    for(int i=0;i<nums.length;i++){
+        if(cnt==0){
+            cnt++;
+            elm=nums[i];
+        }
+        else if(elm==nums[i]){
+            cnt++;
+        }
+        else{
+            cnt--;
+        }
+    }
+    int count=0;
+    for(int i=0;i<nums.length;i++){
+        if(elm==nums[i]){
+            count++;
+        }
+    }
+    if(count>(nums.length/2)){
+        return elm;
+    }
+    return -1;
     }
 }
