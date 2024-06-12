@@ -1,0 +1,28 @@
+class Solve {
+    Pair getFloorAndCeil(int[] arr, int n, int x) {
+        // code here
+        Arrays.sort(arr);
+        if(arr[0]>x){
+            return new Pair(-1,arr[0]);
+        }
+        int floor=-1;
+        int ceil=-1;
+        for(int i=0;i<n;i++){
+            if(arr[i]>x){
+                floor=arr[i-1];
+                ceil=arr[i];
+                break;
+            }
+            if(arr[i]==x){
+                floor=arr[i];
+                ceil=arr[i];
+                break;
+            }
+        }
+        if(floor<0 && arr[n-1]<x){
+            floor=arr[n-1];
+        }
+        return new Pair(floor,ceil);
+        
+    }
+}
