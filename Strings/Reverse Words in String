@@ -1,0 +1,39 @@
+class Solution {
+    public String reverseWords(String s) {
+       
+        int left=0;
+        int right=s.length()-1;
+        String temp="";
+        String ans="";
+        int space=0;
+        while(left<=right){
+            char ch=s.charAt(left);
+            
+            if(ch!=' '){
+                temp+=ch;
+                space=0;
+            }
+            else if(ch ==' ' && space==0){
+                if(!ans.equals("")){
+                    ans=temp+" "+ans;
+                    space++;
+                }
+                else{
+                    ans=temp;
+                    space++;
+                }
+                temp="";
+            }
+            left++;
+        }
+        if(!temp.equals("")){
+            if(!ans.equals("")){
+                ans=temp+" "+ans;
+            }
+            else{
+                ans=temp;
+            }
+        }
+        return ans;
+    }
+}
