@@ -1,0 +1,46 @@
+class Solution
+{
+    void reverse(int a[], int n){
+        for(int i=0;i<n/2;i++){
+            int temp=a[i];
+            a[i]=a[n-i-1];
+            a[n-i-1]=temp;
+        }
+    }
+    void leftSmaller(int a[], int n,int ls[]){
+        Stack<Integer> s=new Stack<>();
+        for(int i=0;i<n;i++){
+	        while(!s.isEmpty() && s.peek()>=a[i] ){
+	            s.pop();
+	        }
+	        if(s.isEmpty()){
+	            ls[i]=0;
+	        }
+	        else{
+	            ls[i]=s.peek();
+	        }
+	        s.push(a[i]);
+	    }
+    }
+    int findMaxDiff(int a[], int n)
+    {
+	// Your code here	
+	
+	
+	int[] ls=new int[n];
+	leftSmaller(a,n,ls);
+	int[] rs=new int[n];
+	reverse(a,n);
+	leftSmaller(a,n,rs);
+	reverse(rs,n);
+	int result=-1;
+	for(int i=0;i<n;i++){
+	    result=Math.max(result,Math.abs(ls[i]-rs[i]));
+	}
+	return result;
+	
+
+
+	
+    }
+}
