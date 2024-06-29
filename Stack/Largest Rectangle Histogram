@@ -1,0 +1,42 @@
+import java.util.Stack;
+
+class Solution {
+    public void leftSmaller(int[] heights, int n, int[] ls) {
+        Stack<Integer> s = new Stack<>();
+        for (int i = 0; i < n; i++) {
+            while (!s.isEmpty() && heights[s.peek()] >= heights[i]) {
+                s.pop();
+            }
+            ls[i] = s.isEmpty() ? -1 : s.peek();
+            s.push(i);
+        }
+    }
+
+    public void rightSmaller(int[] heights, int n, int[] rs) {
+        Stack<Integer> s = new Stack<>();
+        for (int i = n - 1; i >= 0; i--) {
+            while (!s.isEmpty() && heights[s.peek()] >= heights[i]) {
+                s.pop();
+            }
+            rs[i] = s.isEmpty() ? n : s.peek();
+            s.push(i);
+        }
+    }
+
+    public int largestRectangleArea(int[] heights) {
+        int n = heights.length;
+        int[] ls = new int[n];
+        int[] rs = new int[n];
+
+        leftSmaller(heights, n, ls);
+        rightSmaller(heights, n, rs);
+
+        int maxArea = 0;
+        for (int i = 0; i < n; i++) {
+            int width = rs[i] - ls[i] - 1;
+            maxArea = Math.max(maxArea, heights[i] * width);
+        }
+
+        return maxArea;
+    }
+}
