@@ -1,0 +1,17 @@
+class GfG
+{
+	{
+	  
+	    Node temp=head_ref;
+	    for(int i=0;i<pos;i++){
+	        temp=temp.next;
+	    }
+	    Node newNode=new Node(data);
+	    newNode.next=temp.next;
+	    newNode.prev=temp;
+	    if (temp.next != null) {
+            temp.next.prev = newNode;
+        }
+        temp.next = newNode;
+	}
+}
