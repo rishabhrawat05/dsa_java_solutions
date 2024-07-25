@@ -1,0 +1,68 @@
+// Brute Force Approach
+class Solution
+{
+    //Function to find the length of a loop in the linked list.
+    static int countNodesinLoop(Node head)
+    {
+        //Add your code here.
+        if(head==null || head.next==null ){
+            return 0;
+        }
+        Map<Node,Integer> map=new HashMap<>();
+        Node temp=head;
+       
+        while(temp!=null){
+            if(map.containsKey(temp)){
+                return countLength(temp);
+            }
+            map.put(temp,1);
+            temp=temp.next;
+        }
+        return 0;
+    }
+    static int countLength(Node loopNode){
+        Node temp = loopNode;
+        int count=1;
+        while(temp.next!=loopNode){
+            count++;
+            temp=temp.next;
+        }
+        return count;
+    }
+    
+}
+
+// Optimal Approach
+
+class Solution
+{
+    //Function to find the length of a loop in the linked list.
+    static int countNodesinLoop(Node head)
+    {
+        //Add your code here.
+        if(head==null || head.next==null){
+            return 0;
+        }
+        Node slow=head;
+        Node fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast){
+                return countLength(slow);
+            }
+           
+        }
+        return 0;
+        
+    }
+    static int countLength(Node slow){
+        Node temp=slow;
+        int count=1;
+        while(temp.next!=slow){
+            temp=temp.next;
+            count++;
+        }
+        return count;
+    }
+}
