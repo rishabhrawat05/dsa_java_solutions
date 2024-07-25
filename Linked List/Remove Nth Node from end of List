@@ -1,0 +1,61 @@
+//Brute Force Approach
+
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        if (head == null || (head.next == null && n == 1)) {
+            return null;
+        }
+
+        ListNode temp = head;
+        int count = 0;
+        while (temp != null) {
+            count++;
+            temp = temp.next;
+        }
+
+        int NodeToDelete = count - n;
+        temp = head;
+        ListNode prevNode = null;
+
+        if (NodeToDelete == 0) {
+            return head.next;
+        }
+
+        while (NodeToDelete > 0) {
+            prevNode = temp;
+            temp = temp.next;
+            NodeToDelete--;
+        }
+
+        if (prevNode != null && temp != null) {
+            prevNode.next = temp.next;
+            temp.next = null;
+        }
+
+        return head;
+    }
+}
+
+// Optimal Approach
+
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode fast=head;
+        ListNode slow=head;
+        for(int i=0;i<n;i++){
+            fast=fast.next;
+        }
+        if(fast==null){
+            return head.next;
+        }
+        while(fast.next!=null){
+            fast=fast.next;
+            slow=slow.next;
+        }
+        ListNode delNode=slow.next;
+        slow.next=slow.next.next;
+        delNode=null;
+        return head;
+    }
+}
+
