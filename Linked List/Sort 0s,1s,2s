@@ -1,0 +1,51 @@
+// Optimal Approach
+class Solution {
+    // Function to sort a linked list of 0s, 1s and 2s.
+    static Node segregate(Node head) {
+        // add your code here
+        if(head==null || head.next==null){
+            return head;
+        }
+        Node middle=findMiddle(head);
+        Node right=middle.next;
+        middle.next=null;
+        Node left=head;
+        left=segregate(left);
+        right=segregate(right);
+        return mergeSortedLinkedList(left,right);
+    }
+    static Node findMiddle(Node head){
+        if(head==null || head.next==null){
+            return head;
+        }
+        Node slow=head;
+        Node fast=head;
+        while(fast!=null && fast.next!=null && fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+    static Node mergeSortedLinkedList(Node left,Node right){
+        Node dummyNode=new Node(-1);
+        Node temp=dummyNode;
+        while(left!=null && right!=null){
+            if(left.data<=right.data){
+                temp.next=left;
+                left=left.next;
+            }
+            else{
+                temp.next=right;
+                right=right.next;
+            }
+            temp=temp.next;
+        }
+        if(left!=null){
+            temp.next=left;
+        }
+        else{
+            temp.next=right;
+        }
+        return dummyNode.next;
+    }
+}
