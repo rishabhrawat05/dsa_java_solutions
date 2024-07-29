@@ -1,0 +1,12 @@
+class Solution {
+    static String oddEven(int n) {
+        // code here
+        int Oddnum=(n & 1);
+        if(Oddnum==1){
+            return "odd";
+        }
+        else{
+            return "even";
+        }
+    }
+}
