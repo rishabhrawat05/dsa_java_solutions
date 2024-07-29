@@ -1,0 +1,9 @@
+class Solution {
+    static int setBit(int n) {
+        // code here
+    
+        int nextPowerOfTwo=n+1;
+        return nextPowerOfTwo | (nextPowerOfTwo-1);
+        
+    }
+}
