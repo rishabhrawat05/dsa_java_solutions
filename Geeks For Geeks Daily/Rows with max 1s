@@ -1,0 +1,18 @@
+class Solution {
+    public int rowWithMax1s(int arr[][]) {
+        // code here
+     int row=0;
+     int col=arr[0].length-1;
+     int maxRowIndex=-1;
+     while(row<arr.length && col>=0){
+         if(arr[row][col]==1){
+             maxRowIndex=row;
+             col--;
+         }
+         else{
+             row++;
+         }
+     }
+     return maxRowIndex;
+    }
+}
